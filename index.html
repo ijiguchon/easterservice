@@ -925,9 +925,39 @@ function playInline(idx, videoId, ytUrl) {
   var thumb  = document.getElementById('thumb-'  + idx);
   var iframe = document.getElementById('iframe-' + idx);
   if (!thumb || !iframe) return;
+
   thumb.style.display  = 'none';
   iframe.style.display = 'block';
-  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+  iframe.src = 'https://www.youtube.com/embed/' + videoId
+             + '?autoplay=1&rel=0&modestbranding=1&origin=' + location.origin;
+
+  // 임베드 차단 감지: 3초 후 로드 안 되면 YouTube로 직접 열기
+  iframe._ytTimer = setTimeout(function() {
+    try {
+      // contentDocument 접근 시도로 차단 여부 확인
+      var doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (!doc || doc.title === '') throw 'blocked';
+    } catch(e) {
+      // cross-origin blocked or embedding disabled → show fallback
+      iframe.style.display = 'none';
+      thumb.style.display  = 'block';
+      var area = document.getElementById('area-' + idx);
+      if (area) {
+        var fb = document.getElementById('fb-' + idx);
+        if (!fb) {
+          fb = document.createElement('div');
+          fb.id = 'fb-' + idx;
+          fb.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,4,14,0.92);gap:12px;';
+          fb.innerHTML = '<div style="font-size:13px;color:rgba(237,232,224,0.7);text-align:center;">이 영상은 여기서 바로 재생할 수 없습니다.<br>YouTube에서 열어 주세요.</div>'
+                       + '<a href="' + ytUrl + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:rgba(255,0,0,0.8);border-radius:20px;color:#fff;font-size:13px;font-weight:700;text-decoration:none;">▶ YouTube에서 보기</a>';
+          area.style.position = 'relative';
+          area.appendChild(fb);
+        } else {
+          fb.style.display = 'flex';
+        }
+      }
+    }
+  }, 3000);
 }
 
 /* 탭 전환 */
