@@ -26,14 +26,14 @@ html,body{background:#0A0810;color:#EDE8E0;font-family:'Noto Serif KR',serif;min
 .hbadge.ip .dot{background:#F08080;box-shadow:0 0 5px rgba(240,128,128,0.5)}
 .hbadge.zm .dot{background:#80B0F8;box-shadow:0 0 5px rgba(128,176,248,0.5)}
 
-.tabs{display:flex;overflow-x:auto;background:#100C1C;border-bottom:1px solid rgba(201,168,76,0.12);scrollbar-width:none}
+.tabs{display:flex;overflow-x:auto;background:#100C1C;border-bottom:1px solid rgba(201,168,76,0.12);scrollbar-width:none;justify-content:center;}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex-shrink:0;padding:13px 16px;font-size:11.5px;font-family:'Cinzel',serif;letter-spacing:0.8px;color:rgba(255,255,255,0.35);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;user-select:none}
 .tab:hover{color:rgba(201,168,76,0.7)}
 .tab.on{color:#C9A84C;border-bottom-color:#C9A84C;background:rgba(201,168,76,0.05)}
 
-.panel{display:none;padding:24px 20px 52px;max-width:680px;margin:0 auto;animation:fi 0.3s ease}
-.panel.on{display:block}
+.panel{display:none;padding:24px 20px 52px;max-width:600px;margin:0 auto;animation:fi 0.3s ease;text-align:left;}
+.panel.on{display:block;}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 .eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;display:block;margin-bottom:8px}
@@ -301,7 +301,7 @@ footer a:hover{color:#C9A84C}
 <!-- TABS -->
 <nav class="tabs">
   <div class="tab on"  onclick="show(0)">초청 & 소개</div>
-  <div class="tab"     onclick="show(1)">영상</div>
+  <div class="tab"     onclick="show(1)">묵상찬양영상</div>
   <div class="tab"     onclick="show(2)">일정 & 가상칠언</div>
   <div class="tab"     onclick="show(3)">기도 순서</div>
   <div class="tab"     onclick="show(4)">참여 안내</div>
@@ -391,151 +391,252 @@ footer a:hover{color:#C9A84C}
   <span class="eyebrow">묵상 찬양 영상 · Holy Week Praise</span>
   <h2 class="sec-title">6일<br><span>묵상 찬양 영상</span></h2>
   <div class="goldline"></div>
-  <p class="body-text" style="margin-bottom:18px">매일 특새 시작 5분 전(5:25 AM) 함께 보는 묵상 찬양 영상입니다.<br>
-  <span style="font-size:12px;color:rgba(201,168,76,0.65);">▶ 썸네일을 클릭하면 YouTube에서 바로 재생됩니다.</span></p>
+  <p class="body-text" style="margin-bottom:18px;text-align:center;">매일 특새 5분 전(5:25 AM) 함께 보는 묵상 찬양 영상입니다.<br>
+  <span style="font-size:12px;color:rgba(201,168,76,0.65);">▶ 클릭하면 바로 재생 · YouTube 버튼으로 크게 볼 수 있습니다.</span></p>
 
   <!-- 6일 썸네일 그리드 -->
   <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
-      <a href="https://youtu.be/H01YLmoZ7kc" target="_blank" rel="noopener"
-        style="display:block;border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.35);background:rgba(201,168,76,0.07);transition:transform 0.2s,border-color 0.2s;text-decoration:none;"
-        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(201,168,76,0.65)'"
+      <!-- Card 0: 십자가의 용서 -->
+      <div style="border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.35);background:rgba(201,168,76,0.07);transition:transform 0.2s,border-color 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(201,168,76,0.65)'"
         onmouseout="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.35)'">
-        <div style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
-          <img src="https://img.youtube.com/vi/H01YLmoZ7kc/mqdefault.jpg" alt="십자가의 용서" loading="lazy"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.88">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:2px solid rgba(201,168,76,0.85);display:flex;align-items:center;justify-content:center;">
-              <span style="color:#C9A84C;font-size:14px;margin-left:4px;">▶</span>
+        <!-- Thumbnail / inline player area -->
+        <div id="area-0" style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
+          <!-- Thumbnail (shown by default) -->
+          <div id="thumb-0" style="position:absolute;inset:0;cursor:pointer;" onclick="playInline(0,'H01YLmoZ7kc','https://youtu.be/H01YLmoZ7kc')">
+            <img src="https://img.youtube.com/vi/H01YLmoZ7kc/mqdefault.jpg" alt="십자가의 용서" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.88;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.62);border:2px solid rgba(201,168,76,0.9);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#C9A84C;font-size:16px;margin-left:4px;">▶</span>
+              </div>
             </div>
+            <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.8);border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:3px 8px;">
+              <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.65);letter-spacing:1px;">3/30 · MON</span>
+            </div>
+            
           </div>
-          <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.78);border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:3px 8px;">
-            <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.65);letter-spacing:1px;">3/30 · MON</span>
+          <!-- Inline iframe (hidden by default) -->
+          <iframe id="iframe-0" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:none;"></iframe>
+        </div>
+        <!-- Info + YouTube button row -->
+        <div style="padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.65);letter-spacing:1.5px;margin-bottom:2px;">제1언</div>
+            <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 용서</div>
           </div>
-          
+          <a href="https://youtu.be/H01YLmoZ7kc" target="_blank" rel="noopener"
+            style="flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.35);border-radius:14px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(255,0,0,0.22)';this.style.borderColor='rgba(255,80,80,0.7)'"
+            onmouseout="this.style.background='rgba(255,0,0,0.12)';this.style.borderColor='rgba(255,60,60,0.35)'"
+            title="YouTube에서 크게 보기">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FF4444"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.75 12.52 12.52 0 01-1.82-.04A12 12 0 003 12a12 12 0 0012 12 12 12 0 0012-12 12 12 0 00-7.41-11.31zM12 20a8 8 0 010-16 8 8 0 010 16zm1-12.5l4.5 4.5-4.5 4.5V7.5z"/></svg>
+            <span style="font-size:10px;color:#FF7070;font-family:'Cinzel',serif;letter-spacing:0.5px;">YouTube</span>
+          </a>
         </div>
-        <div style="padding:9px 11px;">
-          <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.65);letter-spacing:1.5px;margin-bottom:3px;">제1언</div>
-          <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 용서</div>
-        </div>
-      </a>
-      <a href="https://youtu.be/7osOZ_esoCY" target="_blank" rel="noopener"
-        style="display:block;border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.28);background:rgba(201,168,76,0.05);transition:transform 0.2s,border-color 0.2s;text-decoration:none;"
-        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(201,168,76,0.55)'"
+      </div>
+      <!-- Card 1: 십자가의 구원 -->
+      <div style="border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.28);background:rgba(201,168,76,0.05);transition:transform 0.2s,border-color 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(201,168,76,0.55)'"
         onmouseout="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.28)'">
-        <div style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
-          <img src="https://img.youtube.com/vi/7osOZ_esoCY/mqdefault.jpg" alt="십자가의 구원" loading="lazy"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.88">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:2px solid rgba(201,168,76,0.85);display:flex;align-items:center;justify-content:center;">
-              <span style="color:#C9A84C;font-size:14px;margin-left:4px;">▶</span>
+        <!-- Thumbnail / inline player area -->
+        <div id="area-1" style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
+          <!-- Thumbnail (shown by default) -->
+          <div id="thumb-1" style="position:absolute;inset:0;cursor:pointer;" onclick="playInline(1,'7osOZ_esoCY','https://youtu.be/7osOZ_esoCY')">
+            <img src="https://img.youtube.com/vi/7osOZ_esoCY/mqdefault.jpg" alt="십자가의 구원" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.88;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.62);border:2px solid rgba(201,168,76,0.9);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#C9A84C;font-size:16px;margin-left:4px;">▶</span>
+              </div>
             </div>
+            <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.8);border:1px solid rgba(201,168,76,0.28);border-radius:10px;padding:3px 8px;">
+              <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.55);letter-spacing:1px;">3/31 · TUE</span>
+            </div>
+            
           </div>
-          <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.78);border:1px solid rgba(201,168,76,0.28);border-radius:10px;padding:3px 8px;">
-            <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.55);letter-spacing:1px;">3/31 · TUE</span>
+          <!-- Inline iframe (hidden by default) -->
+          <iframe id="iframe-1" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:none;"></iframe>
+        </div>
+        <!-- Info + YouTube button row -->
+        <div style="padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.55);letter-spacing:1.5px;margin-bottom:2px;">제2언</div>
+            <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 구원</div>
           </div>
-          
+          <a href="https://youtu.be/7osOZ_esoCY" target="_blank" rel="noopener"
+            style="flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.35);border-radius:14px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(255,0,0,0.22)';this.style.borderColor='rgba(255,80,80,0.7)'"
+            onmouseout="this.style.background='rgba(255,0,0,0.12)';this.style.borderColor='rgba(255,60,60,0.35)'"
+            title="YouTube에서 크게 보기">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FF4444"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.75 12.52 12.52 0 01-1.82-.04A12 12 0 003 12a12 12 0 0012 12 12 12 0 0012-12 12 12 0 00-7.41-11.31zM12 20a8 8 0 010-16 8 8 0 010 16zm1-12.5l4.5 4.5-4.5 4.5V7.5z"/></svg>
+            <span style="font-size:10px;color:#FF7070;font-family:'Cinzel',serif;letter-spacing:0.5px;">YouTube</span>
+          </a>
         </div>
-        <div style="padding:9px 11px;">
-          <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.55);letter-spacing:1.5px;margin-bottom:3px;">제2언</div>
-          <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 구원</div>
-        </div>
-      </a>
-      <a href="https://youtu.be/Q99PAc_KO5A" target="_blank" rel="noopener"
-        style="display:block;border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.28);background:rgba(201,168,76,0.05);transition:transform 0.2s,border-color 0.2s;text-decoration:none;"
-        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(201,168,76,0.55)'"
+      </div>
+      <!-- Card 2: 십자가의 사랑 -->
+      <div style="border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.28);background:rgba(201,168,76,0.05);transition:transform 0.2s,border-color 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(201,168,76,0.55)'"
         onmouseout="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.28)'">
-        <div style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
-          <img src="https://img.youtube.com/vi/Q99PAc_KO5A/mqdefault.jpg" alt="십자가의 사랑" loading="lazy"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.88">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:2px solid rgba(201,168,76,0.85);display:flex;align-items:center;justify-content:center;">
-              <span style="color:#C9A84C;font-size:14px;margin-left:4px;">▶</span>
+        <!-- Thumbnail / inline player area -->
+        <div id="area-2" style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
+          <!-- Thumbnail (shown by default) -->
+          <div id="thumb-2" style="position:absolute;inset:0;cursor:pointer;" onclick="playInline(2,'Q99PAc_KO5A','https://youtu.be/Q99PAc_KO5A')">
+            <img src="https://img.youtube.com/vi/Q99PAc_KO5A/mqdefault.jpg" alt="십자가의 사랑" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.88;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.62);border:2px solid rgba(201,168,76,0.9);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#C9A84C;font-size:16px;margin-left:4px;">▶</span>
+              </div>
             </div>
+            <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.8);border:1px solid rgba(201,168,76,0.28);border-radius:10px;padding:3px 8px;">
+              <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.55);letter-spacing:1px;">4/1 · WED</span>
+            </div>
+            
           </div>
-          <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.78);border:1px solid rgba(201,168,76,0.28);border-radius:10px;padding:3px 8px;">
-            <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.55);letter-spacing:1px;">4/1 · WED</span>
+          <!-- Inline iframe (hidden by default) -->
+          <iframe id="iframe-2" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:none;"></iframe>
+        </div>
+        <!-- Info + YouTube button row -->
+        <div style="padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.55);letter-spacing:1.5px;margin-bottom:2px;">제3언</div>
+            <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 사랑</div>
           </div>
-          
+          <a href="https://youtu.be/Q99PAc_KO5A" target="_blank" rel="noopener"
+            style="flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.35);border-radius:14px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(255,0,0,0.22)';this.style.borderColor='rgba(255,80,80,0.7)'"
+            onmouseout="this.style.background='rgba(255,0,0,0.12)';this.style.borderColor='rgba(255,60,60,0.35)'"
+            title="YouTube에서 크게 보기">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FF4444"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.75 12.52 12.52 0 01-1.82-.04A12 12 0 003 12a12 12 0 0012 12 12 12 0 0012-12 12 12 0 00-7.41-11.31zM12 20a8 8 0 010-16 8 8 0 010 16zm1-12.5l4.5 4.5-4.5 4.5V7.5z"/></svg>
+            <span style="font-size:10px;color:#FF7070;font-family:'Cinzel',serif;letter-spacing:0.5px;">YouTube</span>
+          </a>
         </div>
-        <div style="padding:9px 11px;">
-          <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.55);letter-spacing:1.5px;margin-bottom:3px;">제3언</div>
-          <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 사랑</div>
-        </div>
-      </a>
-      <a href="https://youtu.be/XoML_syGJh0" target="_blank" rel="noopener"
-        style="display:block;border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.28);background:rgba(201,168,76,0.05);transition:transform 0.2s,border-color 0.2s;text-decoration:none;"
-        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(201,168,76,0.55)'"
+      </div>
+      <!-- Card 3: 십자가의 탄식 -->
+      <div style="border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.28);background:rgba(201,168,76,0.05);transition:transform 0.2s,border-color 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(201,168,76,0.55)'"
         onmouseout="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.28)'">
-        <div style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
-          <img src="https://img.youtube.com/vi/XoML_syGJh0/mqdefault.jpg" alt="십자가의 탄식" loading="lazy"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.88">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:2px solid rgba(201,168,76,0.85);display:flex;align-items:center;justify-content:center;">
-              <span style="color:#C9A84C;font-size:14px;margin-left:4px;">▶</span>
+        <!-- Thumbnail / inline player area -->
+        <div id="area-3" style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
+          <!-- Thumbnail (shown by default) -->
+          <div id="thumb-3" style="position:absolute;inset:0;cursor:pointer;" onclick="playInline(3,'XoML_syGJh0','https://youtu.be/XoML_syGJh0')">
+            <img src="https://img.youtube.com/vi/XoML_syGJh0/mqdefault.jpg" alt="십자가의 탄식" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.88;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.62);border:2px solid rgba(201,168,76,0.9);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#C9A84C;font-size:16px;margin-left:4px;">▶</span>
+              </div>
             </div>
+            <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.8);border:1px solid rgba(201,168,76,0.28);border-radius:10px;padding:3px 8px;">
+              <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.55);letter-spacing:1px;">4/2 · THU</span>
+            </div>
+            
           </div>
-          <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.78);border:1px solid rgba(201,168,76,0.28);border-radius:10px;padding:3px 8px;">
-            <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.55);letter-spacing:1px;">4/2 · THU</span>
+          <!-- Inline iframe (hidden by default) -->
+          <iframe id="iframe-3" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:none;"></iframe>
+        </div>
+        <!-- Info + YouTube button row -->
+        <div style="padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.55);letter-spacing:1.5px;margin-bottom:2px;">제4언</div>
+            <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 탄식</div>
           </div>
-          
+          <a href="https://youtu.be/XoML_syGJh0" target="_blank" rel="noopener"
+            style="flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.35);border-radius:14px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(255,0,0,0.22)';this.style.borderColor='rgba(255,80,80,0.7)'"
+            onmouseout="this.style.background='rgba(255,0,0,0.12)';this.style.borderColor='rgba(255,60,60,0.35)'"
+            title="YouTube에서 크게 보기">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FF4444"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.75 12.52 12.52 0 01-1.82-.04A12 12 0 003 12a12 12 0 0012 12 12 12 0 0012-12 12 12 0 00-7.41-11.31zM12 20a8 8 0 010-16 8 8 0 010 16zm1-12.5l4.5 4.5-4.5 4.5V7.5z"/></svg>
+            <span style="font-size:10px;color:#FF7070;font-family:'Cinzel',serif;letter-spacing:0.5px;">YouTube</span>
+          </a>
         </div>
-        <div style="padding:9px 11px;">
-          <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,0.55);letter-spacing:1.5px;margin-bottom:3px;">제4언</div>
-          <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 탄식</div>
-        </div>
-      </a>
-      <a href="https://youtu.be/lleK1Z_k69U" target="_blank" rel="noopener"
-        style="display:block;border-radius:10px;overflow:hidden;border:1.5px solid rgba(185,42,42,0.5);background:rgba(139,26,26,0.1);transition:transform 0.2s,border-color 0.2s;text-decoration:none;"
-        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#E87070'"
+      </div>
+      <!-- Card 4: 십자가의 갈증 -->
+      <div style="border-radius:10px;overflow:hidden;border:1.5px solid rgba(185,42,42,0.5);background:rgba(139,26,26,0.1);transition:transform 0.2s,border-color 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='#E87070'"
         onmouseout="this.style.transform='';this.style.borderColor='rgba(185,42,42,0.5)'">
-        <div style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
-          <img src="https://img.youtube.com/vi/lleK1Z_k69U/mqdefault.jpg" alt="십자가의 갈증" loading="lazy"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.88">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:2px solid rgba(201,168,76,0.85);display:flex;align-items:center;justify-content:center;">
-              <span style="color:#C9A84C;font-size:14px;margin-left:4px;">▶</span>
+        <!-- Thumbnail / inline player area -->
+        <div id="area-4" style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
+          <!-- Thumbnail (shown by default) -->
+          <div id="thumb-4" style="position:absolute;inset:0;cursor:pointer;" onclick="playInline(4,'lleK1Z_k69U','https://youtu.be/lleK1Z_k69U')">
+            <img src="https://img.youtube.com/vi/lleK1Z_k69U/mqdefault.jpg" alt="십자가의 갈증" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.88;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.62);border:2px solid rgba(201,168,76,0.9);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#C9A84C;font-size:16px;margin-left:4px;">▶</span>
+              </div>
             </div>
+            <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.8);border:1px solid rgba(185,42,42,0.5);border-radius:10px;padding:3px 8px;">
+              <span style="font-family:'Cinzel',serif;font-size:9px;color:#E87070;letter-spacing:1px;">4/3 · FRI</span>
+            </div>
+            <div style="position:absolute;top:6px;right:6px;background:rgba(139,26,26,0.88);border:1px solid rgba(185,42,42,0.6);border-radius:8px;padding:2px 7px;"><span style="font-size:9px;color:#F08080;font-family:Cinzel,serif;letter-spacing:0.5px;">성금요일</span></div>
           </div>
-          <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.78);border:1px solid rgba(185,42,42,0.5);border-radius:10px;padding:3px 8px;">
-            <span style="font-family:'Cinzel',serif;font-size:9px;color:#E87070;letter-spacing:1px;">4/3 · FRI</span>
+          <!-- Inline iframe (hidden by default) -->
+          <iframe id="iframe-4" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:none;"></iframe>
+        </div>
+        <!-- Info + YouTube button row -->
+        <div style="padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:#E87070;letter-spacing:1.5px;margin-bottom:2px;">제5언</div>
+            <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 갈증</div>
           </div>
-          <div style="position:absolute;top:6px;right:6px;background:rgba(139,26,26,0.85);border:1px solid rgba(185,42,42,0.6);border-radius:8px;padding:2px 7px;"><span style="font-size:9px;color:#F08080;font-family:'Cinzel',serif;letter-spacing:0.5px;">성금요일</span></div>
+          <a href="https://youtu.be/lleK1Z_k69U" target="_blank" rel="noopener"
+            style="flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.35);border-radius:14px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(255,0,0,0.22)';this.style.borderColor='rgba(255,80,80,0.7)'"
+            onmouseout="this.style.background='rgba(255,0,0,0.12)';this.style.borderColor='rgba(255,60,60,0.35)'"
+            title="YouTube에서 크게 보기">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FF4444"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.75 12.52 12.52 0 01-1.82-.04A12 12 0 003 12a12 12 0 0012 12 12 12 0 0012-12 12 12 0 00-7.41-11.31zM12 20a8 8 0 010-16 8 8 0 010 16zm1-12.5l4.5 4.5-4.5 4.5V7.5z"/></svg>
+            <span style="font-size:10px;color:#FF7070;font-family:'Cinzel',serif;letter-spacing:0.5px;">YouTube</span>
+          </a>
         </div>
-        <div style="padding:9px 11px;">
-          <div style="font-family:'Cinzel',serif;font-size:10px;color:#E87070;letter-spacing:1.5px;margin-bottom:3px;">제5언</div>
-          <div style="font-size:13px;font-weight:600;color:#EDE8E0;">십자가의 갈증</div>
-        </div>
-      </a>
-      <a href="https://youtu.be/kgK03Q4ftXw" target="_blank" rel="noopener"
-        style="display:block;border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.5);background:rgba(201,168,76,0.1);transition:transform 0.2s,border-color 0.2s;text-decoration:none;"
-        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#E8C878'"
+      </div>
+      <!-- Card 5: 완성 · 위탁 -->
+      <div style="border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.5);background:rgba(201,168,76,0.1);transition:transform 0.2s,border-color 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='#E8C878'"
         onmouseout="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.5)'">
-        <div style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
-          <img src="https://img.youtube.com/vi/kgK03Q4ftXw/mqdefault.jpg" alt="완성 · 위탁" loading="lazy"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.88">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:2px solid rgba(201,168,76,0.85);display:flex;align-items:center;justify-content:center;">
-              <span style="color:#C9A84C;font-size:14px;margin-left:4px;">▶</span>
+        <!-- Thumbnail / inline player area -->
+        <div id="area-5" style="position:relative;padding-bottom:56.25%;overflow:hidden;background:#07040E;">
+          <!-- Thumbnail (shown by default) -->
+          <div id="thumb-5" style="position:absolute;inset:0;cursor:pointer;" onclick="playInline(5,'kgK03Q4ftXw','https://youtu.be/kgK03Q4ftXw')">
+            <img src="https://img.youtube.com/vi/kgK03Q4ftXw/mqdefault.jpg" alt="완성 · 위탁" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.88;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.62);border:2px solid rgba(201,168,76,0.9);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#C9A84C;font-size:16px;margin-left:4px;">▶</span>
+              </div>
             </div>
+            <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.8);border:1px solid rgba(201,168,76,0.5);border-radius:10px;padding:3px 8px;">
+              <span style="font-family:'Cinzel',serif;font-size:9px;color:#E8C878;letter-spacing:1px;">4/4 · SAT</span>
+            </div>
+            
           </div>
-          <div style="position:absolute;top:7px;left:7px;background:rgba(0,0,0,0.78);border:1px solid rgba(201,168,76,0.5);border-radius:10px;padding:3px 8px;">
-            <span style="font-family:'Cinzel',serif;font-size:9px;color:#E8C878;letter-spacing:1px;">4/4 · SAT</span>
+          <!-- Inline iframe (hidden by default) -->
+          <iframe id="iframe-5" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:none;"></iframe>
+        </div>
+        <!-- Info + YouTube button row -->
+        <div style="padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:#E8C878;letter-spacing:1.5px;margin-bottom:2px;">제6·7언</div>
+            <div style="font-size:13px;font-weight:600;color:#EDE8E0;">완성 · 위탁</div>
           </div>
-          
+          <a href="https://youtu.be/kgK03Q4ftXw" target="_blank" rel="noopener"
+            style="flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.35);border-radius:14px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(255,0,0,0.22)';this.style.borderColor='rgba(255,80,80,0.7)'"
+            onmouseout="this.style.background='rgba(255,0,0,0.12)';this.style.borderColor='rgba(255,60,60,0.35)'"
+            title="YouTube에서 크게 보기">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FF4444"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.75 12.52 12.52 0 01-1.82-.04A12 12 0 003 12a12 12 0 0012 12 12 12 0 0012-12 12 12 0 00-7.41-11.31zM12 20a8 8 0 010-16 8 8 0 010 16zm1-12.5l4.5 4.5-4.5 4.5V7.5z"/></svg>
+            <span style="font-size:10px;color:#FF7070;font-family:'Cinzel',serif;letter-spacing:0.5px;">YouTube</span>
+          </a>
         </div>
-        <div style="padding:9px 11px;">
-          <div style="font-family:'Cinzel',serif;font-size:10px;color:#E8C878;letter-spacing:1.5px;margin-bottom:3px;">제6·7언</div>
-          <div style="font-size:13px;font-weight:600;color:#EDE8E0;">완성 · 위탁</div>
-        </div>
-      </a>
+      </div>
   </div>
-
 </div>
 <!-- ══════════════════════════════════
      TAB 2 : 일정 & 가상칠언 (통합)
@@ -820,6 +921,14 @@ footer a:hover{color:#C9A84C}
 </footer>
 
 <script>
+function playInline(idx, videoId, ytUrl) {
+  var thumb  = document.getElementById('thumb-'  + idx);
+  var iframe = document.getElementById('iframe-' + idx);
+  if (!thumb || !iframe) return;
+  thumb.style.display  = 'none';
+  iframe.style.display = 'block';
+  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+}
 
 /* 탭 전환 */
 function show(n){
